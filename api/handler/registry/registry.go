@@ -83,12 +83,12 @@ func (rh *registryHandler) del(w http.ResponseWriter, r *http.Request) {
 
 func (rh *registryHandler) get(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
-	service := r.Form.Get("service")
+	serviceName := r.Form.Get("service")
 
-	var s []*registry.Service
+	var services []*registry.Service
 	var err error
 
-	if len(service) == 0 {
+	if len(serviceName) == 0 {
 		//
 		upgrade := r.Header.Get("Upgrade")
 		connect := r.Header.Get("Connection")
@@ -105,9 +105,9 @@ func (rh *registryHandler) get(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// otherwise list services
-		s, err = rh.reg.ListServices()
+		services, err = rh.reg.ListServices()
 	} else {
-		s, err = rh.reg.GetService(service)
+		services, err = rh.reg.GetService(serviceName)
 	}
 
 	if err != nil {
@@ -115,12 +115,12 @@ func (rh *registryHandler) get(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if s == nil || (len(service) > 0 && (len(s) == 0 || len(s[0].Name) == 0)) {
+	if services == nil || (len(serviceName) > 0 && (len(services) == 0 || len(services[0].Name) == 0)) {
 		http.Error(w, "Service not found", 404)
 		return
 	}
 
-	b, err := json.Marshal(s)
+	b, err := json.Marshal(services)
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 		return

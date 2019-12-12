@@ -76,6 +76,7 @@ func (s *service) genSrv() *registry.Service {
 	addr, err := maddr.Extract(host)
 	if err != nil {
 		// best effort localhost
+		// 给一个默认的地址，增强容错能力
 		addr = "127.0.0.1"
 	}
 

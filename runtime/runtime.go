@@ -42,7 +42,7 @@ type Notifier interface {
 type EventType int
 
 const (
-	// Create is emitted when a new build has been craeted
+	// Create is emitted when a new build has been created
 	Create EventType = iota
 	// Update is emitted when a new update become available
 	Update

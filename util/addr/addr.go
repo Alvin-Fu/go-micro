@@ -33,7 +33,7 @@ func Extract(addr string) (string, error) {
 	if len(addr) > 0 && (addr != "0.0.0.0" && addr != "[::]" && addr != "::") {
 		return addr, nil
 	}
-
+	// interface接口
 	ifaces, err := net.Interfaces()
 	if err != nil {
 		return "", fmt.Errorf("Failed to get interfaces! Err: %v", err)
@@ -88,7 +88,7 @@ func Extract(addr string) (string, error) {
 	if publicIP != nil {
 		return net.IP(publicIP).String(), nil
 	}
-
+	// explicit: 显示的   provide： 提供
 	return "", fmt.Errorf("No IP address found, and explicit IP not provided")
 }
 

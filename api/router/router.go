@@ -8,6 +8,7 @@ import (
 )
 
 // Router is used to determine an endpoint for a request
+// 路由器用于确定请求的终点
 type Router interface {
 	// Returns options
 	Options() Options

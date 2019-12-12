@@ -34,6 +34,7 @@ type service struct {
 }
 
 func newService(s *Service, c CreateOptions) *service {
+	// 获取命令和参数
 	var exec string
 	var args []string
 
@@ -61,6 +62,7 @@ func newService(s *Service, c CreateOptions) *service {
 	}
 }
 
+// service中的输出流，一般用于日志输出
 func (s *service) streamOutput() {
 	go io.Copy(s.output, s.PID.Output)
 	go io.Copy(s.output, s.PID.Error)

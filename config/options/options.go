@@ -6,7 +6,7 @@ import (
 	"sync"
 )
 
-// Options is used for initialisation
+// Options is used for initialisation(初始化)
 type Options interface {
 	// Initialise options
 	Init(...Option) error

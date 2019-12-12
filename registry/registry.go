@@ -20,8 +20,8 @@ var (
 type Registry interface {
 	Init(...Option) error
 	Options() Options
-	Register(*Service, ...RegisterOption) error
-	Deregister(*Service) error
+	Register(*Service, ...RegisterOption) error // 注册
+	Deregister(*Service) error                  // 撤销
 	GetService(string) ([]*Service, error)
 	ListServices() ([]*Service, error)
 	Watch(...WatchOption) (Watcher, error)

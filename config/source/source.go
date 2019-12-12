@@ -21,8 +21,8 @@ type Source interface {
 // ChangeSet represents a set of changes from a source
 type ChangeSet struct {
 	Data      []byte
-	Checksum  string
-	Format    string
+	Checksum  string // 校验和
+	Format    string // 数据的格式json等
 	Source    string
 	Timestamp time.Time
 }
